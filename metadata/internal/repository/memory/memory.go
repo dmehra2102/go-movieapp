@@ -20,15 +20,15 @@ func New() *Repository {
 }
 
 // Get retrieves movie metadata by movie id.
-func (r *Repository) Get(_ context.Context, id string) (*model.Metadata, error){
+func (r *Repository) Get(_ context.Context, id string) (*model.Metadata, error) {
 	r.RLock()
 	defer r.RUnlock()
-	m,ok := r.data[id]
+	m, ok := r.data[id]
 	if !ok {
 		return nil, repository.ErroNotFound
 	}
 
-	return m,nil
+	return m, nil
 }
 
 // Put adds movie metadata for a given movie id
