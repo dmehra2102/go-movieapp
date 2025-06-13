@@ -4,7 +4,10 @@ go 1.23.8
 
 toolchain go1.23.10
 
-require github.com/hashicorp/consul/api v1.32.1
+require (
+	github.com/hashicorp/consul/api v1.32.1
+	google.golang.org/protobuf v1.36.6
+)
 
 require (
 	github.com/armon/go-metrics v0.4.1 // indirect
