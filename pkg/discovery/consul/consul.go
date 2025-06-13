@@ -45,7 +45,7 @@ func (r *Registry) Register(ctx context.Context, instanceId string, svcName stri
 		Name:    svcName,
 		Address: parts[0],
 		Port:    port,
-		Check:   &consul.AgentServiceCheck{CheckID: instanceId},
+		Check:   &consul.AgentServiceCheck{CheckID: instanceId,TTL: "5s"},
 	})
 }
 
