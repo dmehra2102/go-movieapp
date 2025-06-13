@@ -25,7 +25,7 @@ func (r *Repository) Get(_ context.Context, id string) (*model.Metadata, error) 
 	defer r.RUnlock()
 	m, ok := r.data[id]
 	if !ok {
-		return nil, repository.ErroNotFound
+		return nil, repository.ErrNotFound
 	}
 
 	return m, nil
