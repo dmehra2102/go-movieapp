@@ -41,25 +41,25 @@ func (r *Registry) Register(ctx context.Context, instanceId string, svcName stri
 }
 
 // Deregister removes a service record from the registry.
-func (r *Registry) Deregister(ctx context.Context, instanceId string , svcName string) error {
+func (r *Registry) Deregister(ctx context.Context, instanceId string, svcName string) error {
 	r.Lock()
 	defer r.Unlock()
 
-	if _,ok := r.serviceAddrs[serviceName(svcName)]; !ok {
+	if _, ok := r.serviceAddrs[serviceName(svcName)]; !ok {
 		return nil
 	}
 
-	delete(r.serviceAddrs[serviceName(svcName)],instanceID(instanceId))
+	delete(r.serviceAddrs[serviceName(svcName)], instanceID(instanceId))
 	return nil
 }
 
 // ReportHealthyState is a push mechanism for
 // reporting healthy state to the registry.
 func (r *Registry) ReportHealthyState(instanceId string, srvName string) error {
-	if _,ok := r.serviceAddrs[serviceName(srvName)];!ok {
+	if _, ok := r.serviceAddrs[serviceName(srvName)]; !ok {
 		return errors.New("service is not registered yet")
 	}
-	if _,ok := r.serviceAddrs[serviceName(srvName)][instanceID(instanceId)]; !ok {
+	if _, ok := r.serviceAddrs[serviceName(srvName)][instanceID(instanceId)]; !ok {
 		return errors.New("service instance is not registered yet")
 	}
 
@@ -73,11 +73,11 @@ func (r *Registry) ServiceAddresses(ctx context.Context, srvName string) ([]stri
 	r.Lock()
 	defer r.Unlock()
 	if len(r.serviceAddrs[serviceName(srvName)]) == 0 {
-        return nil, discovery.ErrNotFound
-    }
+		return nil, discovery.ErrNotFound
+	}
 
-    var res []string
-	for _,i := range r.serviceAddrs[serviceName(srvName)] {
+	var res []string
+	for _, i := range r.serviceAddrs[serviceName(srvName)] {
 		if i.lastActive.Before(time.Now().Add(-5 * time.Second)) {
 			continue
 		}
@@ -85,5 +85,5 @@ func (r *Registry) ServiceAddresses(ctx context.Context, srvName string) ([]stri
 		res = append(res, i.hostPort)
 	}
 
-	return res,nil
+	return res, nil
 }
