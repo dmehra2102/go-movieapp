@@ -8,7 +8,7 @@ import (
 	"google.golang.org/grpc/status"
 	"movieexample.com/gen"
 	"movieexample.com/metadata/internal/controller/metadata"
-	"movieexample.com/metadata/pkg/model"
+	model "movieexample.com/metadata/pkg"
 )
 
 // Handler defines a movie metadata gRPC handler.
