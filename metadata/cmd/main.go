@@ -55,17 +55,17 @@ import (
 // }
 
 // Below is the implementation of gRPC with Protobuf communicaiton b/w services
-func main(){
+func main() {
 	log.Println("Starting the movie metadata service")
 	repo := memory.New()
 	ctrl := metadata.New(repo)
 	h := grpcHandler.New(ctrl)
 	lis, err := net.Listen("tcp", "localhost:8081")
-    if err != nil {
-        log.Fatalf("failed to listen: %v", err)
-    }
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
 	srv := grpc.NewServer()
-	gen.RegisterMetadataServiceServer(srv,h)
+	gen.RegisterMetadataServiceServer(srv, h)
 	srv.Serve(lis)
 
 }

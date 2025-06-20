@@ -2,12 +2,13 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.28.3
-// source: movie.proto
+// source: api/movie.proto
 
 package gen
 
 import (
 	context "context"
+
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -155,7 +156,7 @@ var MetadataService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "movie.proto",
+	Metadata: "api/movie.proto",
 }
 
 const (
@@ -295,7 +296,7 @@ var RatingService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "movie.proto",
+	Metadata: "api/movie.proto",
 }
 
 const (
@@ -397,5 +398,5 @@ var MovieService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "movie.proto",
+	Metadata: "api/movie.proto",
 }
